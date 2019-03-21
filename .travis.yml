@@ -5,18 +5,18 @@ services:
 before_install:
   - docker build -t manuelbautista/react-test -f ./client/Dockerfile.dev ./client
 
-  script:
-    - docker run manuelbautista/react-test npm test -- --coverage
+script:
+  - docker run manuelbautista/react-test npm test -- --coverage
 
-    after_success:
-      - docker build -t manuelbautista/multi-client ./client
-      - docker build -t manuelbautista/multi-nginx ./nginx
-      - docker build -t manuelbautista/multi-server ./server
-      - docker build -t manuelbautista/multi-worker ./worker
-      #login to docker cli using docker login command
-      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-      #push these images to docker hub 
-      - docker push manuelbautista/multi-client
-      - docker push manuelbautista/multi-nginx
-      - docker push manuelbautista/multi-server
-      - docker push manuelbautista/multi-worker
+after_success:
+  - docker build -t manuelbautista/multi-client ./client
+  - docker build -t manuelbautista/multi-nginx ./nginx
+  - docker build -t manuelbautista/multi-server ./server
+  - docker build -t manuelbautista/multi-worker ./worker
+  #login to docker cli using docker login command
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #push these images to docker hub 
+  - docker push manuelbautista/multi-client
+  - docker push manuelbautista/multi-nginx
+  - docker push manuelbautista/multi-server
+  - docker push manuelbautista/multi-worker
