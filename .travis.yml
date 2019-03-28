@@ -13,9 +13,9 @@ after_success:
   - docker build -t b0hcoder/multi-nginx ./nginx
   - docker build -t b0hcoder/multi-server ./server
   - docker build -t b0hcoder/multi-worker ./worker
-  #login to docker cli using docker login command
+  
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  #push these images to docker hub the id has to be the same as the hub.docker.com(b0hcoder)
+  
   - docker push b0hcoder/multi-client
   - docker push b0hcoder/multi-nginx
   - docker push b0hcoder/multi-server
