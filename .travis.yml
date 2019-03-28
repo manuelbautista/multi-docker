@@ -21,7 +21,7 @@ after_success:
   - docker push b0hcoder/multi-server
   - docker push b0hcoder/multi-worker
 
-  deploy:
+deploy:
     provider: elasticbeanstalk
     region: us-east-2
     app: multi-docker
